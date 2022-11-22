@@ -1,0 +1,54 @@
+\documentclass{article}
+
+% Document commands
+%   - final : remove edition notes when true
+\usepackage{ifthen}
+\newboolean{final}
+\setboolean{final}{false}
+
+% Style files
+\usepackage{TGstyle}
+\usepackage{kmath}
+
+% Headings
+\input{headings/packages}
+\input{headings/macros}
+\input{headings/glossary}
+
+% Bibliography
+\bibliographystyle{abbrvnat}
+
+% Paper title
+\title{Template for my papers}
+
+% Authors (separate with \And or \AND)
+\author{%
+  Theo Guyard
+  % \thanks{}
+  \\
+  Inria, Centre de l'Université de Rennes, 35000 Rennes, France \\
+  INSA Rennes, CNRS, IRMAR-UMR 6625, 35000 Rennes, France\\
+  \texttt{theo.guyard@inria.fr}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  \lipsum[1]
+\end{abstract}
+
+\input{sections/introduction}
+
+\section*{Acknowledgements}
+\lipsum[1]
+
+\appendix
+\section{Appendix}
+\lipsum[1]
+
+\bibliography{paper}
+
+
+\end{document}
