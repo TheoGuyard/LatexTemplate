@@ -1,25 +1,4 @@
-% Use 
+% Define new commands with 
 % - \newcommand{}[]{}
 % - \renewcommand{}[]{}
 % - \DeclareMathOperator{\abs}{abs}
-
-% Abbreviations
-\newcommand{\ie}{\emph{i.e.}}
-\newcommand{\eg}{\emph{e.g.}}
-\newcommand{\etal}{\emph{et al.}}
-\newcommand{\resp}{resp.}
-\newcommand{\iif}{iff.}
-\newcommand{\st}{s.t.}
-
-% Edition macros
-\ifthenelse{\boolean{final}}{
-  \newcommand{\AddNote}[1]{\textcolor{blue}{[Note: #1]}}
-  \newcommand{\AddTodo}[1]{\textcolor{red}{[Todo: #1]}}
-  \newcommand{\AddCite}{\textcolor{orange}{[Cite]}}
-  \newcommand{\AddRef}{\textcolor{orange}{[Ref]}}
-}{
-  \newcommand{\AddNote}[1]{}
-  \newcommand{\AddTodo}[1]{}
-  \newcommand{\AddCite}{}
-  \newcommand{\AddRef}{}
-}

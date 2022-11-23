@@ -5,13 +5,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{TGstyle}[2022/11/22 Style file]
 
-\ProcessOptions\relax
+% Require packages
+\RequirePackage{xparse}
+\RequirePackage{soul}
 
 % Fonts
 \renewcommand{\rmdefault}{ptm}
 \renewcommand{\sfdefault}{phv}
 
-% set page geometry
+% Page geometry
 \usepackage[verbose=true,letterpaper]{geometry}
 \AtBeginDocument{
   \newgeometry{
@@ -243,5 +245,33 @@
   \end{quote}%
   \vskip 1ex%
 }
+
+% Edition macros
+\ifthenelse{\boolean{final}}{%
+  \newcommand{\AddNote}[1]{}
+  \newcommand{\AddTodo}[1]{}
+  \newcommand{\AddCite}{}
+  \newcommand{\AddRef}{}
+  \newcommand{\ProvideEditionMacros}[2]{%
+    \expandafter\NewDocumentCommand\csname Add#1\endcsname{gg}{}%
+    \expandafter\NewDocumentCommand\csname Rem#1\endcsname{gg}{}%
+    \expandafter\NewDocumentCommand\csname Sup#1\endcsname{gg}{}%
+  }
+}{
+  \newcommand{\AddNote}[1]{\textcolor{blue}{[Note: #1]}}
+  \newcommand{\AddTodo}[1]{\textcolor{red}{[Todo: #1]}}
+  \newcommand{\AddCite}{\textcolor{orange}{[Cite]}}
+  \newcommand{\AddRef}{\textcolor{orange}{[Ref]}}
+  \newcommand{\ProvideEditionMacros}[2]{%
+    \expandafter\NewDocumentCommand\csname Add#1\endcsname{gg}{\textcolor{#2}{##2}}%
+    \expandafter\NewDocumentCommand\csname Rem#1\endcsname{gg}{\textcolor{#2}{[#1: ##2]}}%
+    \expandafter\NewDocumentCommand\csname Sup#1\endcsname{gg}{\textcolor{#2}{\st{##2}}}%
+  }
+}
+
+% Abbreviations
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
+\newcommand{\etal}{\emph{et al.}}
 
 \endinput
