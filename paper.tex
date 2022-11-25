@@ -1,10 +1,9 @@
-\documentclass{article}
+% Document options
+%   - [] : enable edition macros and add the footer date note on the first page
+%   - [final] : disable edition macros and add the footer date note on the first page
+\documentclass[]{article}
 
 % Document commands
-%   - final : remove edition notes when true
-\usepackage{ifthen}
-\newboolean{final}
-\setboolean{final}{false}
 
 % Style files
 \usepackage{TGstyle}
@@ -16,7 +15,7 @@
 \input{headings/glossary}
 
 % Bibliography
-\bibliographystyle{abbrvnat}
+\bibliographystyle{unsrtnat}
 
 % Paper title
 \title{Template for my papers}
@@ -30,8 +29,13 @@
   \texttt{theo.guyard@inria.fr}
 }
 
-% Edition macros
+% Edition macros. Commands such as
 \ProvideEditionMacros{TG}{blue}
+% enable the use of the following macros :
+%   - AddTG{blabla} : displays "blabla" in blue
+%   - RemTG{blabla} : displays "[TG : blabla]" in blue
+%   - SupTG{blabla} : displays "blabla" in blue and striked out
+
 
 % Document body
 \begin{document}

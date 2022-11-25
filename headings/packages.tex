@@ -1,11 +1,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[dvipsnames]{xcolor}
 
 % Text formatting
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=RedOrange,
+    urlcolor=NavyBlue,
+    citecolor=NavyBlue,
+}
 \usepackage{url} 
 \usepackage{microtype}
 \usepackage{glossaries}
+\glsdisablehyper
 \usepackage{cleveref}
 \usepackage{lipsum}
 
@@ -14,7 +22,7 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{amsopn}
-\usepackage{nicefrac}
+\usepackage{stmaryrd}
 
 % Graphics
 \usepackage{graphicx}
@@ -25,9 +33,9 @@
 \pgfplotsset{compat=newest}
 
 % Bibliography
-\usepackage[numbers,compress]{natbib}
+\usepackage[sort&compress,numbers]{natbib}
 
 % Theorem environments
-\newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}

@@ -5,6 +5,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{TGstyle}[2022/11/22 Style file]
 
+% Options
+
+\newif\if@final\@finalfalse
+\DeclareOption{final}{
+  \@finaltrue
+}
+
+\ProcessOptions\relax
+
+
 % Require packages
 \RequirePackage{xparse}
 \RequirePackage{soul}
@@ -224,12 +234,16 @@
 % Notice to bottom of first page
 \newcommand{\@noticestring}{Last update : \today.}
 \newcommand{\ftype@noticebox}{8}
-\newcommand{\@notice}{%
-  \enlargethispage{2\baselineskip}%
-  \@float{noticebox}[b]%
-    \footnotesize\@noticestring%
-  \end@float%
-}
+\if@final
+  \newcommand{\@notice}{}
+\else
+  \newcommand{\@notice}{%
+    \enlargethispage{2\baselineskip}%
+    \@float{noticebox}[b]%
+      \footnotesize\@noticestring%
+    \end@float%
+  } 
+\fi
 
 % Abstract styling
 \renewenvironment{abstract}%
@@ -247,7 +261,7 @@
 }
 
 % Edition macros
-\ifthenelse{\boolean{final}}{%
+\if@final
   \newcommand{\AddNote}[1]{}
   \newcommand{\AddTodo}[1]{}
   \newcommand{\AddCite}{}
@@ -257,7 +271,7 @@
     \expandafter\NewDocumentCommand\csname Rem#1\endcsname{gg}{}%
     \expandafter\NewDocumentCommand\csname Sup#1\endcsname{gg}{}%
   }
-}{
+\else
   \newcommand{\AddNote}[1]{\textcolor{blue}{[Note: #1]}}
   \newcommand{\AddTodo}[1]{\textcolor{red}{[Todo: #1]}}
   \newcommand{\AddCite}{\textcolor{orange}{[Cite]}}
@@ -267,7 +281,7 @@
     \expandafter\NewDocumentCommand\csname Rem#1\endcsname{gg}{\textcolor{#2}{[#1: ##2]}}%
     \expandafter\NewDocumentCommand\csname Sup#1\endcsname{gg}{\textcolor{#2}{\st{##2}}}%
   }
-}
+\fi
 
 % Abbreviations
 \newcommand{\ie}{\emph{i.e.}}
