@@ -207,7 +207,11 @@
   \vskip 0.09in%
 }
 
-% Title authors
+% Title authors and affiliations
+\def\affiliation#1{\gdef\@affiliation{#1}}
+\def\@affiliation{\@latex@warning@no@line{No \noexpand\affiliation given}}
+\def\mail#1{\gdef\@mail{#1}}
+\def\@mail{\@latex@warning@no@line{No \noexpand\mail given}}
 \providecommand{\@maketitle}{}
 \renewcommand{\@maketitle}{%
   \vbox{%
@@ -227,6 +231,10 @@
       \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\ignorespaces%
     }
     \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\@author\end{tabular}%
+    \vskip 0.01in \@minus 0.01in
+    \@affiliation%
+    \vskip 0.01in \@minus 0.01in
+    \texttt{\@mail}%
     \vskip 0.3in \@minus 0.1in
   }
 }
